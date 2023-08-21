@@ -24,17 +24,4 @@ class Product extends Model
         return $this->belongsToMany(Ingredient::class)
             ->withPivot('quantity');
     }
-
-    public function images(): Attribute
-    {
-        return Attribute::make(
-            get: function ($value) {
-                $paths = collect(json_decode($value));
-                return $paths->map(function ($path) {
-                    return asset('storage/' . $path);
-                });
-            }
-        );
-    }
-
 }

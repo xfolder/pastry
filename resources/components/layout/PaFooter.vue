@@ -3,18 +3,21 @@
 import ShopInfo from "../ShopInfo.vue";
 import ShopSocial from "../ShopSocial.vue";
 import FormNewsletter from "../FormNewsletter.vue";
+import ShopLogo from "../ShopLogo.vue";
 </script>
 
 <template>
-<footer class="flex p-10 border-t">
-  <div class="w-3/12">
-    <ShopInfo></ShopInfo>
-  </div>
-  <div class="w-6/12">
-    <FormNewsletter></FormNewsletter>
-  </div>
-  <div class="w-3/12">
-    <ShopSocial></ShopSocial>
+<footer class="p-10 border-t bg-color2">
+  <div class="space-y-16 lg:flex lg:items-center lg:space-y-0">
+	  <div class="flex justify-center flex-grow  lg:order-2">
+		  <ShopLogo class="w-44 h-44"></ShopLogo>
+	  </div>
+	  <div class="flex-grow lg:order-1">
+		  <ShopSocial></ShopSocial>
+	  </div>
+	  <div class="flex-grow lg:order-3">
+		  <FormNewsletter></FormNewsletter>
+	  </div>
   </div>
 </footer>
 </template>

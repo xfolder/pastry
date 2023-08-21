@@ -20,6 +20,24 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        \App\Models\User::create([
+            'name' => 'admin',
+            'email' => 'admin@pastry.local',
+            'password' => \Illuminate\Support\Facades\Hash::make('password'),
+        ]);
+
+        \App\Models\User::create([
+            'name' => 'Luana',
+            'email' => 'luana@pastry.local',
+            'password' => \Illuminate\Support\Facades\Hash::make('password'),
+        ]);
+
+        \App\Models\User::create([
+            'name' => 'Maria',
+            'email' => 'maria@pastry.local',
+            'password' => \Illuminate\Support\Facades\Hash::make('password'),
+        ]);
     }
 
     /**

@@ -18,4 +18,13 @@ class ProductController extends Controller
 
         return ProductDto::collection($products);
     }
+
+    public function show(Request $request, int $id) {
+        $product = Product::with('ingredients')
+            ->where('on_sale', true)
+            ->where('id', $id)
+            ->firstOrFail();
+
+        return ProductDto::from($product);
+    }
 }
