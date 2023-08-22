@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
                 NavigationGroup::make()
                     ->label('Negozio'),
                 NavigationGroup::make()
-                    ->label('Catalogo')
+                    ->label('Catalogo'),
             ]);
         });
     }

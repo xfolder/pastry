@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
 
 class Product extends Model
 {
@@ -14,16 +12,18 @@ class Product extends Model
         'price',
         'quantity',
         'on_sale',
-        'images'
+        'images',
+        'created_at',
     ];
+
     protected $casts = [
         'images' => 'array',
-        'price_in_time' => 'float'
+        'price_in_time' => 'float',
     ];
 
     protected $appends = [
         'price_in_time',
-        'saleable'
+        'saleable',
     ];
 
     public function ingredients(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -40,7 +40,7 @@ class Product extends Model
                 $discount = 0;
                 if ($dayFromCreation >= 4) {
                     return 0;
-                } elseif ($dayFromCreation >= 3 ) {
+                } elseif ($dayFromCreation >= 3) {
                     $discount = 80;
                 } elseif ($dayFromCreation >= 2) {
                     $discount = 20;

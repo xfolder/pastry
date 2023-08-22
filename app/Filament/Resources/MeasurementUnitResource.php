@@ -3,20 +3,19 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\MeasurementUnitResource\Pages;
-use App\Filament\Resources\MeasurementUnitResource\RelationManagers;
 use App\Models\MeasurementUnit;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class MeasurementUnitResource extends Resource
 {
     protected static ?string $model = MeasurementUnit::class;
+
     protected static ?string $navigationIcon = 'heroicon-o-scale';
+
     protected static ?string $navigationGroup = 'Catalogo';
 
     public static function form(Form $form): Form

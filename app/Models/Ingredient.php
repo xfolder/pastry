@@ -7,10 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ingredient extends Model
 {
-
     protected $fillable = [
         'name',
-        'measurement_unit_id'
+        'measurement_unit_id',
     ];
 
     public function measurementUnit(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -28,8 +27,9 @@ class Ingredient extends Model
         return Attribute::make(
             get: function () {
                 if ($this->relationLoaded('measurementUnit') && $this->measurementUnit !== null) {
-                    return $this->name . ' (' . $this->measurementUnit->abbreviation . ')';
+                    return $this->name.' ('.$this->measurementUnit->abbreviation.')';
                 }
+
                 return $this->name;
             }
         );

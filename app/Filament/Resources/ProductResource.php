@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Filament\Resources\ProductResource\RelationManagers\IngredientsRelationManager;
 use App\Models\Product;
 use Filament\Forms;
@@ -11,15 +10,14 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
-    protected static ?string $navigationGroup = 'Negozio';
 
+    protected static ?string $navigationIcon = 'heroicon-o-collection';
+
+    protected static ?string $navigationGroup = 'Negozio';
 
     public static function form(Form $form): Form
     {
@@ -29,20 +27,37 @@ class ProductResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('quantity')
+                    ->numeric()
+                    ->mask(fn (Forms\Components\TextInput\Mask $mask) => $mask
+                        ->numeric()
+                        ->integer()
+                        ->minValue(0)
+                    )
                     ->required(),
                 Forms\Components\TextInput::make('price')
+                    ->numeric()
+                    ->mask(fn (Forms\Components\TextInput\Mask $mask) => $mask
+                        ->numeric()
+                        ->minValue(0)
+                        ->decimalPlaces(2)
+                        ->padFractionalZeros()
+                    )
                     ->required(),
                 Forms\Components\Toggle::make('on_sale')
                     ->required()
                     ->inline(false),
+                Forms\Components\DateTimePicker::make('created_at')
+                    ->required()
+                    ->maxDate(now())
+                    ->hiddenOn(['create']),
                 Forms\Components\FileUpload::make('images')
-                ->multiple()
-                ->disk('public')
-                ->directory('products')
-                ->preserveFilenames()
-                ->image()
-                ->enableReordering()
-                ->maxFiles(5)
+                    ->multiple()
+                    ->disk('public')
+                    ->directory('products')
+                    ->preserveFilenames()
+                    ->image()
+                    ->enableReordering()
+                    ->maxFiles(5),
             ]);
     }
 
@@ -57,8 +72,8 @@ class ProductResource extends Resource
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                //                Tables\Columns\TextColumn::make('updated_at')
+                //                    ->dateTime(),
             ])
             ->filters([
                 //
@@ -74,7 +89,7 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            IngredientsRelationManager::class
+            IngredientsRelationManager::class,
         ];
     }
 
