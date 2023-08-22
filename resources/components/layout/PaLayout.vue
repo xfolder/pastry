@@ -5,11 +5,11 @@ import PaFooter from "./PaFooter.vue";
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen gap-y-12">
+  <div class="flex flex-col min-h-screen">
     <slot name="header">
       <PaHeader></PaHeader>
     </slot>
-    <main class="flex-grow">
+    <main class="flex-grow flex flex-col">
       <slot></slot>
     </main>
     <slot name="footer">

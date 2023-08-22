@@ -9,6 +9,7 @@
     "paths": {
       "@/*": ["resources/*"]
     },
+    "types": ["node"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",

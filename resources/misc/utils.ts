@@ -20,6 +20,4 @@ const slugify = (text: string): string => {
     return kebabCase(text);
 }
 
-
-
 export { formatPrice, slugify }

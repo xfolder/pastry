@@ -1,10 +1,13 @@
 <script setup lang="ts">
 
 import ProductList from "../components/ProductList.vue";
+import PaPage from "@/components/layout/PaPage.vue";
 </script>
 
 <template>
-    <ProductList></ProductList>
+	<PaPage>
+		<ProductList></ProductList>
+	</PaPage>
 </template>
 
 <style scoped>

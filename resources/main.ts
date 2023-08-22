@@ -3,4 +3,9 @@ import './style.css'
 import App from './App.vue'
 import router from "./router/router";
 
-createApp(App).use(router).mount('#app')
+import {ClickOutside} from 'vuetify/directives'
+
+createApp(App)
+    .use(router)
+    .directive('v-click-outside', ClickOutside)
+    .mount('#app')

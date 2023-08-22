@@ -19,6 +19,11 @@ const routes: RouteRecordRaw[] = [
                 component: async () => await import('@/pages/ProductDetailPage.vue'),
             }
         ]
+    },
+    {
+        path: '/:pathMatch(.*)*', // 404
+        name: 'not-found',
+        component: async () => await import('@/pages/Error404Page.vue'),
     }
 ];
 

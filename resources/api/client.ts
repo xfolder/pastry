@@ -17,4 +17,7 @@ export const client = {
     async getProduct(id: bigint) {
         return await axiosInstance.get(`shop/products/${id}`);
     },
+    async searchProducts(query: string, limit: number = 5) {
+        return await axiosInstance.post(`shop/products/search`, {query, limit});
+    }
 }

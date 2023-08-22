@@ -1,10 +1,15 @@
 <script setup lang="ts">
+	import {ref} from "vue";
 
-
+	const inputValue = ref<string>("");
 </script>
 
 <template>
-	<input class="px-4 py-2" placeholder="Cerca il tuo dolce preferito...">
+	<input
+		v-model="inputValue"
+		type="text"
+		class="px-4 py-2"
+		placeholder="Cerca il tuo dolce preferito...">
 </template>
 
 <style scoped>

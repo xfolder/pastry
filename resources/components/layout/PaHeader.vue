@@ -10,13 +10,13 @@ import SearchInput from "@/components/SearchInput.vue";
 	<div class="bg-color2 py-1">
 		<ShopInfo></ShopInfo>
 	</div>
-	<div class="flex flex-col items-center gap-y-2 lg:flex-row lg:gap-x-20 lg:px-20 py-4 border-b">
+	<div class="flex flex-col items-center gap-y-2 lg:flex-row lg:gap-x-20 p-6 md:p-8 border-b">
 		<div>
             <router-link :to="{name:'home'}">
                 <ShopLogo class="w-24 h-24"></ShopLogo>
             </router-link>
 		</div>
-		<div class="w-full px-12 md:px-20 lg:px-0">
+		<div class="w-full">
 			<SearchInput></SearchInput>
 		</div>
 	</div>
