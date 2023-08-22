@@ -10,15 +10,14 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class IngredientResource extends Resource
 {
     protected static ?string $model = Ingredient::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-beaker';
 
+    protected static ?string $navigationGroup = 'Catalogo';
 
     public static function form(Form $form): Form
     {
@@ -61,7 +60,7 @@ class IngredientResource extends Resource
     public static function getRelations(): array
     {
         return [
-//            MeasurementUnitResource::class
+            //            MeasurementUnitResource::class
         ];
     }
 
@@ -73,6 +72,7 @@ class IngredientResource extends Resource
             'edit' => Pages\EditIngredient::route('/{record}/edit'),
         ];
     }
+
     protected static function getGlobalSearchEloquentQuery(): Builder
     {
         return parent::getGlobalSearchEloquentQuery()->with(['measurementUnit']);

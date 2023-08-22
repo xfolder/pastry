@@ -37,9 +37,6 @@ class Product extends Model
         return Attribute::make(
             get: function () {
                 $dayFromCreation = $this->created_at->diffInDays(now());
-                Log::debug('days', [
-                    'days' => $dayFromCreation
-                ]);
                 $discount = 0;
                 if ($dayFromCreation >= 4) {
                     return 0;

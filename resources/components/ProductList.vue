@@ -16,8 +16,8 @@ client.getProducts().then((response) => {
 
 <template>
 	<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-		<div v-for="product in products">
-			<ProductListElement :product="product" :key="product.id"></ProductListElement>
+		<div v-for="product in products" :key="product.id">
+			<ProductListElement :product="product"></ProductListElement>
 		</div>
 	</div>
 </template>

@@ -16,8 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class MeasurementUnitResource extends Resource
 {
     protected static ?string $model = MeasurementUnit::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-scale';
+    protected static ?string $navigationGroup = 'Catalogo';
 
     public static function form(Form $form): Form
     {
@@ -52,14 +52,14 @@ class MeasurementUnitResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -67,5 +67,5 @@ class MeasurementUnitResource extends Resource
             'create' => Pages\CreateMeasurementUnit::route('/create'),
             'edit' => Pages\EditMeasurementUnit::route('/{record}/edit'),
         ];
-    }    
+    }
 }

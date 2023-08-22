@@ -18,11 +18,9 @@ use Illuminate\Support\Facades\Log;
 
 class IngredientsRelationManager extends RelationManager
 {
-
     protected static string $relationship = 'ingredients';
-
     protected static ?string $recordTitleAttribute = 'name';
-
+    public $tableRecordsPerPage = 50;
 
     public static function form(Form $form): Form
     {
@@ -70,18 +68,23 @@ class IngredientsRelationManager extends RelationManager
 //                ]),
                 Tables\Actions\AttachAction::make()
                     ->recordSelectOptionsQuery(fn (Builder $query) => $query->with('measurementUnit'))
+                    ->recordTitle(fn (Ingredient $record): string => $record->name_with_measurement_unit)
                     ->form(fn (AttachAction $action): array => [
-                        $action->getRecordSelect()->createOptionForm([
-                            Forms\Components\TextInput::make('name')
-                                ->required()
-                                ->maxLength(255),
-                            Forms\Components\Select::make('measurement_unit_id')
-                                ->relationship('measurementUnit', 'name'),
-                            Forms\Components\TextInput::make('quantity')
-                                ->required()
-                                ->type('number')
-                                ->step('0.01'),
-                        ]),
+                        $action->getRecordSelect()
+                            ->createOptionUsing(function($data, $form) {
+                                $ingredient = Ingredient::create([
+                                    'name' => $data['name'],
+                                    'measurement_unit_id' => $data['measurement_unit_id']
+                                ]);
+                                return $ingredient->getKey();
+                            })
+                            ->createOptionForm([
+                                Forms\Components\TextInput::make('name')
+                                    ->required()
+                                    ->maxLength(255),
+                                Forms\Components\Select::make('measurement_unit_id')
+                                    ->relationship('measurementUnit', 'name'),
+                            ]),
                         Forms\Components\TextInput::make('quantity')
                             ->required()
                             ->type('number')

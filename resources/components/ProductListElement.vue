@@ -41,14 +41,31 @@ const props = defineProps({
                 </div>
 				<router-link :to="product.route()"><PaButton color="color1">Dettagli</PaButton></router-link>
             </div>
-			<router-link :to="product.route()">
-				<a class="btn-animated relative h-12 overflow-hidden hidden lg:block">
-					<div class="h-full relative overflow-hidden cursor-pointer">
-						<span class="flex items-center justify-center absolute z-10 top-0 left-0 w-full h-full text-white">vai alla scheda</span>
-						<span class="flex items-center justify-center absolute z-10 top-0 left-0 w-full h-full text-3xl text-gray-900">{{ formatPrice(product.price, null, '€') }}</span>
+			<div class="hidden lg:block">
+				<router-link :to="product.route()" >
+					<div class="btn-animated relative h-12 overflow-hidden">
+						<div class="h-full relative overflow-hidden cursor-pointer">
+							<span class="flex items-center justify-center absolute z-10 top-0 left-0 w-full h-full text-white">vai alla scheda</span>
+							<span class="flex items-center justify-center absolute z-10 top-0 left-0 w-full h-full">
+								<span v-if="product.saleable">
+									<span v-if="product.price != product.price_in_time">
+										<span class="text-3xl text-gray-900 pr-4">{{ formatPrice(product.price_in_time, null, '€') }}</span>
+										<span class="text-2xl text-gray-900 pr-4 line-through">{{ formatPrice(product.price, null, '€') }}</span>
+									</span>
+									<span v-else>
+										<span class="text-3xl text-gray-900 pr-4">{{ formatPrice(product.price, null, '€') }}</span>
+									</span>
+								</span>
+								<span v-else>
+									<span class="flex-grow text-3xl text-gray-900 pr-4">Non disponibile</span>
+								</span>
+							</span>
+
+						</div>
 					</div>
-				</a>
-			</router-link>
+				</router-link>
+			</div>
+
 		</div>
 	</div>
 </template>

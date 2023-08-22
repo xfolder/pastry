@@ -1,8 +1,6 @@
 <script setup lang="ts">
 
 import PaButton from "@/components/base/PaButton.vue";
-import { CIcon } from '@coreui/icons-vue';
-import { cilSearch } from '@coreui/icons';
 import PaInput from "@/components/base/PaInput.vue";
 import {ref} from "vue";
 import {client} from "@/api/client.ts";
@@ -44,7 +42,7 @@ const resetSearch = () => {
 </script>
 
 <template>
-	<div class="flex w-full bg-slate-200" v-v-click-outside="resetSearch">
+	<div class="flex w-full bg-slate-200" v-click-outside="resetSearch">
 		<div class="flex-grow w-auto relative">
 			<PaInput
 					:modelValue="searchInput"
@@ -63,7 +61,7 @@ const resetSearch = () => {
 		</div>
 
 		<PaButton class="text-white" color="color1" @click="search">
-			<CIcon :icon="cilSearch" class="text-white w-4 h-4"></CIcon>
+			<CIcon icon="cilSearch" class="text-white w-4 h-4"></CIcon>
 		</PaButton>
 	</div>
 </template>
