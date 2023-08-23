@@ -16,15 +16,19 @@ set DB_PASSWORD = password
 ```shell
 docker run --rm --interactive --tty -v $(pwd):/app composer install
 sudo chown -R $USER:$USER vendor
+```
+### 3. run sail
+<a href="https://laravel.com/docs/10.x/sail#configuring-a-shell-alias">configure sail alias</a>
+```
 sail up -d
 ```
-### 3. run artisan commands
+### 4. run artisan commands
 ```shell
 sail artisan key:generate
 sail artisan migrate:fresh
 sail artisan storage:link
 ```
-### 4. build frontend
+### 5. build frontend
 ```shell
 npm install
 npm run dev
