@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Filament\Resources\ProductResource\RelationManagers;
 
@@ -18,7 +19,7 @@ class IngredientsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    public $tableRecordsPerPage = 50;
+    protected int $defaultTableRecordsPerPageSelectOption = 50;
 
     public static function form(Form $form): Form
     {
@@ -57,7 +58,7 @@ class IngredientsRelationManager extends RelationManager
                     ->recordTitle(fn (Ingredient $record): string => $record->name_with_measurement_unit)
                     ->form(fn (AttachAction $action): array => [
                         $action->getRecordSelect()
-                            ->createOptionUsing(function ($data, $form) {
+                            ->createOptionUsing(function (array $data) {
                                 $ingredient = Ingredient::create([
                                     'name' => $data['name'],
                                     'measurement_unit_id' => $data['measurement_unit_id'],

@@ -12,12 +12,18 @@ const axiosInstance = axios.create({
 
 export const client = {
     async getProducts() {
-        return await axiosInstance.get("shop/products");
+        return await axiosInstance.get("shop/products").then((response) => {
+            return response.data;
+        });
     },
     async getProduct(id: bigint) {
-        return await axiosInstance.get(`shop/products/${id}`);
+        return await axiosInstance.get(`shop/products/${id}`).then((response) => {
+            return response.data;
+        });
     },
     async searchProducts(query: string, limit: number = 5) {
-        return await axiosInstance.post(`shop/products/search`, {query, limit});
+        return await axiosInstance.post(`shop/products/search`, {query, limit}).then((response) => {
+            return response.data;
+        });
     }
 }

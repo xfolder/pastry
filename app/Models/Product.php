@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -7,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'name',
         'price',
@@ -16,11 +22,21 @@ class Product extends Model
         'created_at',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
     protected $casts = [
         'images' => 'array',
         'price_in_time' => 'float',
     ];
 
+    /**
+     * The attributes that should be appended to JSON responses.
+     *
+     * @var array<int, string>
+     */
     protected $appends = [
         'price_in_time',
         'saleable',
