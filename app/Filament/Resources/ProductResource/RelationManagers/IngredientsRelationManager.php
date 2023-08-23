@@ -52,18 +52,6 @@ class IngredientsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                //                Tables\Actions\CreateAction::make()
-                //                ->form(fn (Tables\Actions\CreateAction $action): array => [
-                //                    Forms\Components\TextInput::make('name')
-                //                        ->required()
-                //                        ->maxLength(255),
-                //                    Forms\Components\Select::make('measurement_unit_id')
-                //                        ->relationship('measurementUnit', 'name'),
-                //                    Forms\Components\TextInput::make('quantity')
-                //                        ->required()
-                //                        ->type('number')
-                //                        ->step('0.01'),
-                //                ]),
                 Tables\Actions\AttachAction::make()
                     ->recordSelectOptionsQuery(fn (Builder $query) => $query->with('measurementUnit'))
                     ->recordTitle(fn (Ingredient $record): string => $record->name_with_measurement_unit)

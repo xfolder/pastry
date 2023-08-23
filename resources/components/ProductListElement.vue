@@ -5,7 +5,7 @@ import {formatPrice} from "@/misc/utils.ts";
 import PaButton from "@/components/base/PaButton.vue";
 import Product from "@/classes/Product.ts";
 
-const props = defineProps({
+defineProps({
 	product: {
 		type: Object as PropType<Product>,
 		required: true
