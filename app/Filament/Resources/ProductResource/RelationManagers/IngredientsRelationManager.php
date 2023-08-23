@@ -47,15 +47,16 @@ class IngredientsRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('pivot.quantity')
                     ->label('Quantità')
-                    ->description(fn (Ingredient $record): string => $record->measurementUnit?->abbreviation),
+                    ->description(fn (Ingredient $record): string|null => $record->measurementUnit?->abbreviation),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
                 Tables\Actions\AttachAction::make()
-                    ->recordSelectOptionsQuery(fn (Builder $query) => $query->with('measurementUnit'))
-                    ->recordTitle(fn (Ingredient $record): string => $record->name_with_measurement_unit)
+                    ->recordSelectOptionsQuery(fn (Builder $query) => $query->whereHas('measurementUnit')->with('measurementUnit'))
+                    ->preloadRecordSelect()
+                    ->recordTitle(fn (Ingredient $record): string|null => $record->name_with_measurement_unit)
                     ->form(fn (AttachAction $action): array => [
                         $action->getRecordSelect()
                             ->createOptionUsing(function (array $data) {
